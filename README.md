@@ -113,20 +113,33 @@ Make sure you have the following installed:
 ![Register](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/register.png)
 
 
-### Home Page
+### All Posts
 
-![Home Page](https://via.placeholder.com/800x400?text=Home+Page+Image)
+![All posts](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/allPosts.png)
 
 ### Post Creation Page
 
-![Post Creation](https://via.placeholder.com/800x400?text=Post+Creation+Page)
+![Post Creation](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/createPost.png)
 
 ### Post Details Page
 
-![Post Details](https://via.placeholder.com/800x400?text=Post+Details+Page)
+![Post Details](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/show.png)
 
-### Comment Section
+### Delete
 
-![Comment Section](https://via.placeholder.com/800x400?text=Comment+Section)
+![Post Details](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/delete.png)
 
+### Edit Post
+
+![Post Details](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/editPost.png)
+
+
+### Normal User View
+
+![Normal](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/normalView.png)
+
+
+### Validation
+
+![validation](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/validation.png)
 
