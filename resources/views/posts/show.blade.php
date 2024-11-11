@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="container">
-        <!-- Post Details -->
         <div class="card mt-5 shadow-sm">
             <div class="card-body">
                 <h2 class="card-title mb-3">{{ $post->title }}</h2>
@@ -16,7 +15,8 @@
 
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('posts.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Posts</a>
-                    @if(Auth::id() === $post->user_id)
+                    
+                    @if(Auth::id() === $post->user_id || Auth::user()->is_admin)
                         <div>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-success me-2"><i class="fas fa-edit"></i> Edit Post</a>
                             <button type="button" class="btn btn-danger" onclick="confirmDeletion({{ $post->id }})">
@@ -41,10 +41,12 @@
         @csrf
         @method('DELETE')
     </form>
+
     <form id="delete-comment-form" action="" method="POST" style="display:none;">
         @csrf
         @method('DELETE')
     </form>
+
     <script>
         function confirmDeletion(postId) {
             Swal.fire({

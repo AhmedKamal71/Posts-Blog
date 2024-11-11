@@ -18,7 +18,7 @@ class CommentController extends Controller
     {
         try {
             $comments = Comment::with('user')->get();
-            return response()->json($comments);
+            return view('comments.index', compact('comments'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to fetch comments');
         }
@@ -71,7 +71,7 @@ class CommentController extends Controller
         try {
             $comment = Comment::findOrFail($id);
 
-            if (Auth::id() !== $comment->user_id) {
+            if (Auth::id() !== $comment->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to edit this comment.');
             }
 
@@ -89,7 +89,7 @@ class CommentController extends Controller
         try {
             $comment = Comment::findOrFail($id);
 
-            if (Auth::id() !== $comment->user_id) {
+            if (Auth::id() !== $comment->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to update this comment.');
             }
 
@@ -109,7 +109,7 @@ class CommentController extends Controller
         try {
             $comment = Comment::findOrFail($id);
 
-            if (Auth::id() !== $comment->user_id) {
+            if (Auth::id() !== $comment->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to delete this comment.');
             }
 

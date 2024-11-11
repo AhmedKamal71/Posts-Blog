@@ -9,7 +9,6 @@
                 <i class="fas fa-plus"></i> Add New Post
             </a>
         </div>
-        
         <div class="table-responsive">
             <table class="table table-striped table-bordered">
                 <thead>
@@ -27,45 +26,45 @@
                         <tr>
                             <th scope="row">{{ $post->id }}</th>
                             <td>{{ $post->title }}</td>
-                            <td>{{ Str::limit($post->content, 50) }}</td> <!-- Truncate content for better display -->
+                            <td>{{ Str::limit($post->content, 50) }}</td> 
                             <td>{{ $post->user->name }}</td>
-                            <td>{{ $post->created_at->format('M d, Y') }}</td> <!-- Format date -->
+                            <td>{{ $post->created_at->format('M d, Y') }}</td> 
                             <td>
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info me-2">
                                         <i class="fas fa-eye"></i> Show
                                     </a>
 
-                                    @if(Auth::id() === $post->user_id)
+                                    @if(Auth::id() === $post->user_id || Auth::user()->is_admin)  <!-- Check if user is the post owner or an admin -->
                                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning me-2">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
                                         
-                            <form id="delete-post-{{ $post->id }}" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmDeletion({{ $post->id }})">
-                                    <i class="fas fa-trash-alt"></i> Delete
-                                </button>
-                            </form>
+                                        <form id="delete-post-{{ $post->id }}" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger" onclick="confirmDeletion({{ $post->id }})">
+                                                <i class="fas fa-trash-alt"></i> Delete
+                                            </button>
+                                        </form>
 
-                            <script>
-                                function confirmDeletion(postId) {
-                                    Swal.fire({
-                                        title: 'Are you sure?',
-                                        text: "You won't be able to revert this!",
-                                        icon: 'warning',
-                                        showCancelButton: true,
-                                        confirmButtonColor: '#d33',
-                                        cancelButtonColor: '#3085d6',
-                                        confirmButtonText: 'Yes, delete it!'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            document.getElementById(`delete-post-${postId}`).submit();
-                                        }
-                                    });
-                                }
-                            </script>
+                                        <script>
+                                            function confirmDeletion(postId) {
+                                                Swal.fire({
+                                                    title: 'Are you sure?',
+                                                    text: "You won't be able to revert this!",
+                                                    icon: 'warning',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#d33',
+                                                    cancelButtonColor: '#3085d6',
+                                                    confirmButtonText: 'Yes, delete it!'
+                                                }).then((result) => {
+                                                    if (result.isConfirmed) {
+                                                        document.getElementById(`delete-post-${postId}`).submit();
+                                                    }
+                                                });
+                                            }
+                                        </script>
 
                                     @endif
                                 </div>

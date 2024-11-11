@@ -63,7 +63,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
 
-            if (Auth::id() !== $post->user_id) {
+            if (Auth::id() !== $post->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to edit this post.');
             }
 
@@ -82,7 +82,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
 
-            if (Auth::id() !== $post->user_id) {
+            if (Auth::id() !== $post->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to update this post.');
             }
 
@@ -102,7 +102,7 @@ class PostController extends Controller
         try {
             $post = Post::findOrFail($id);
 
-            if (Auth::id() !== $post->user_id) {
+            if (Auth::id() !== $post->user_id && !Auth::user()->is_admin) {
                 return redirect()->back()->with('error', 'You are not authorized to delete this post.');
             }
             $post->delete();
