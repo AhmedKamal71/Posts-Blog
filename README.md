@@ -110,7 +110,7 @@ Make sure you have the following installed:
 
 ### Registeration
 
-![Register]([http://localhost/assets/register.png](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/register.png))
+![Register](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/register.png)
 
 
 ### Home Page
