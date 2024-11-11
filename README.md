@@ -136,7 +136,7 @@ Make sure you have the following installed:
 
 ### Normal User View
 
-![Normal](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/normalView.png)
+![Normal](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/normalUser.png)
 
 
 ### Validation
