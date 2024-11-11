@@ -31,19 +31,19 @@
                             <td>{{ $post->created_at->format('M d, Y') }}</td> 
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info me-2">
+                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info btn-sm me-2">
                                         <i class="fas fa-eye"></i> Show
                                     </a>
 
                                     @if(Auth::id() === $post->user_id || Auth::user()->is_admin)
-                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning me-2">
+                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm me-2">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
                                         
                                         <form id="delete-post-{{ $post->id }}" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger" onclick="confirmDeletion({{ $post->id }})">
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDeletion({{ $post->id }})">
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
                                         </form>
@@ -55,10 +55,9 @@
                 </tbody>
             </table>
             
-            <!-- Pagination Links -->
             <div class="d-flex justify-content-center mt-4">
                 <div class="pagination">
-                    {{ $posts->links('pagination::bootstrap-4') }} <!-- Using Bootstrap 4 pagination links -->
+                    {{ $posts->links('pagination::bootstrap-4') }}
                 </div>
             </div>
         </div>
@@ -82,3 +81,11 @@
         });
     }
 </script>
+
+
+<style>
+    .btn-sm {
+        height: 36px;
+        line-height: 36px;
+    }
+</style>

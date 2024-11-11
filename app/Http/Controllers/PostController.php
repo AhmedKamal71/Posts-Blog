@@ -15,8 +15,7 @@ class PostController extends Controller
     public function index()
     {
         try {
-            // Use paginate to get 10 posts per page (you can adjust the number)
-            $posts = Post::with('user')->paginate(10); // You can change 10 to whatever number of posts per page you prefer
+            $posts = Post::with('user')->paginate(10);
             return view('posts.index', compact('posts'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to fetch posts');

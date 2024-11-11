@@ -15,8 +15,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-
-                    
                     @if(Auth::user()->is_admin)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('comments.index') }}">Comments</a>
