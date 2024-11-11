@@ -127,7 +127,7 @@ Make sure you have the following installed:
 
 ### Delete
 
-![Post Details](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/delete.png)
+![delete](https://github.com/AhmedKamal71/Posts-Blog/blob/main/public/assets/delete.png)
 
 ### Edit Post
 
