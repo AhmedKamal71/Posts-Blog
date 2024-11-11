@@ -108,6 +108,11 @@ Make sure you have the following installed:
 
 ## Screenshots
 
+### Registeration
+
+![Register](http://localhost/assets/register.png)
+
+
 ### Home Page
 
 ![Home Page](https://via.placeholder.com/800x400?text=Home+Page+Image)
