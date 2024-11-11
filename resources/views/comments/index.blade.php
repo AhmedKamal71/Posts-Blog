@@ -1,6 +1,3 @@
-@extends('main.parent')
-
-@section('content')
 <div class="container">    
     <div class="card mt-4 shadow-sm">
         <div class="card-body">
@@ -14,21 +11,27 @@
 
                 @if(Auth::id() === $comment->user_id || Auth::user()->is_admin)
                 <div class="d-flex justify-content-end">
-                        <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-primary me-2">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <button type="button" class="btn btn-sm btn-danger" onclick="confirmCommentDeletion({{ $comment->id }})">
-                            <i class="fas fa-trash-alt"></i> Delete
-                        </button>
-                    </div>
-                    @endif
+                    <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-sm btn-primary me-2">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmCommentDeletion({{ $comment->id }})">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
                 </div>
-                @empty
-                <p class="text-muted">No comments yet.</p>
-                @endforelse
+                @endif
             </div>
-</div>
+            @empty
+            <p class="text-muted">No comments yet.</p>
+            @endforelse
+        </div>
+    </div>
 
+    <form id="delete-comment-form" action="" method="POST" style="display:none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
+</div>
 
 <script>
     function confirmCommentDeletion(commentId) {
@@ -49,5 +52,3 @@
         });
     }
 </script>
-</div>
-@endsection

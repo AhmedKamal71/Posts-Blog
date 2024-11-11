@@ -35,7 +35,7 @@
                                         <i class="fas fa-eye"></i> Show
                                     </a>
 
-                                    @if(Auth::id() === $post->user_id || Auth::user()->is_admin)  <!-- Check if user is the post owner or an admin -->
+                                    @if(Auth::id() === $post->user_id || Auth::user()->is_admin)
                                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning me-2">
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
@@ -47,25 +47,6 @@
                                                 <i class="fas fa-trash-alt"></i> Delete
                                             </button>
                                         </form>
-
-                                        <script>
-                                            function confirmDeletion(postId) {
-                                                Swal.fire({
-                                                    title: 'Are you sure?',
-                                                    text: "You won't be able to revert this!",
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: '#d33',
-                                                    cancelButtonColor: '#3085d6',
-                                                    confirmButtonText: 'Yes, delete it!'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        document.getElementById(`delete-post-${postId}`).submit();
-                                                    }
-                                                });
-                                            }
-                                        </script>
-
                                     @endif
                                 </div>
                             </td>
@@ -73,6 +54,31 @@
                     @endforeach
                 </tbody>
             </table>
+            
+            <!-- Pagination Links -->
+            <div class="d-flex justify-content-center mt-4">
+                <div class="pagination">
+                    {{ $posts->links('pagination::bootstrap-4') }} <!-- Using Bootstrap 4 pagination links -->
+                </div>
+            </div>
         </div>
     </div>
 @endsection
+
+<script>
+    function confirmDeletion(postId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`delete-post-${postId}`).submit();
+            }
+        });
+    }
+</script>

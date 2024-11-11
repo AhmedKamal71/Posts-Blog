@@ -18,7 +18,7 @@ class CommentController extends Controller
     {
         try {
             $comments = Comment::with('user')->get();
-            return view('comments.index', compact('comments'));
+            return view('comments.adminComments', compact('comments'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to fetch comments');
         }
