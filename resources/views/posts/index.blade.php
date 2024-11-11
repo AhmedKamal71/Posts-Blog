@@ -41,13 +41,32 @@
                                             <i class="fas fa-edit"></i> Edit
                                         </a>
                                         
-                                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this post?')">
-                                                <i class="fas fa-trash-alt"></i> Delete
-                                            </button>
-                                        </form>
+                            <form id="delete-post-{{ $post->id }}" action="{{ route('posts.destroy', $post->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger" onclick="confirmDeletion({{ $post->id }})">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </form>
+
+                            <script>
+                                function confirmDeletion(postId) {
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: "You won't be able to revert this!",
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#d33',
+                                        cancelButtonColor: '#3085d6',
+                                        confirmButtonText: 'Yes, delete it!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            document.getElementById(`delete-post-${postId}`).submit();
+                                        }
+                                    });
+                                }
+                            </script>
+
                                     @endif
                                 </div>
                             </td>

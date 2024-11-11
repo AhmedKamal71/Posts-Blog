@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CommentController extends Controller
 {
@@ -26,9 +27,9 @@ class CommentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view('comments.create');
+        return view('comments.create', compact('post'));
     }
 
     /**
@@ -37,15 +38,17 @@ class CommentController extends Controller
     public function store(CommentRequest $request, Post $post)
     {
         try {
-            $request->merge(['user_id' => Auth::id()]);
-
-            $post->comments()->create($request->validated());
-
+            Log::info('Store Comment Request:', $request->all());
+            $validatedData = $request->validated();
+            $validatedData['user_id'] = Auth::id();
+            $post->comments()->create($validatedData);
             return redirect()->route('posts.show', $post->id)->with('success', 'Comment added successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to add comment. Please try again.');
         }
     }
+
+
 
     /**
      * Display the specified resource.
